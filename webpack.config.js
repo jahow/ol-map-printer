@@ -4,7 +4,7 @@ module.exports = {
     mode: 'development',
     entry: {
         app: path.resolve(__dirname, 'src', 'index.js'),
-        worker: path.resolve(__dirname, 'lib', 'print.worker.js'),
+        worker: path.resolve(__dirname, 'lib', 'worker', 'index.js'),
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
