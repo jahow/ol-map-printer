@@ -19,6 +19,9 @@ window.addEventListener('load', () => {
                 console.log('Worker is ready')
                 printBtn.disabled = false
                 break;
+            case 'notsupported':
+                console.log('OffscreenCanvas not supported :(')
+                break;
         }
     }
 
