@@ -1,6 +1,8 @@
 window.addEventListener('load', () => {
     const specElt = document.getElementById('spec')
     const printBtn = document.getElementById('print')
+    const resultElt = document.getElementById('result')
+    const resultCtx = resultElt.getContext('2d')
 
     printBtn.disabled = true
 
@@ -23,6 +25,11 @@ window.addEventListener('load', () => {
         switch (msg.type) {
             case 'notsupported':
                 console.log('OffscreenCanvas not supported :(')
+                break;
+            case 'render':
+                resultElt.width = msg.imageData.width;
+                resultElt.height = msg.imageData.height;
+                resultCtx.drawImage(msg.imageData, 0, 0)
                 break;
         }
     }
