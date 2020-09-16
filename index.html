@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>OpenLayers print test</title>
+    <script src="app.js"></script>
+</head>
+<body>
+    <textarea id="spec" style="width: 600px; height: 400px">{
+  "layers": [
+    {
+      "type": "XYZ",
+      "url": "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    },
+    {
+      "type": "WMS",
+      "url": "https://ahocevar.com/geoserver/wms",
+      "layer": "topp:states",
+      "opacity": 0.9
+    }
+  ],
+  "size": [800, 500],
+  "center": [-50, 42],
+  "dpi": 200,
+  "scale": 100000000,
+  "projection": "EPSG:3857"
+}</textarea>
+    <br>
+    <br>
+    <div>
+      <button id="print" disabled>Start printing this spec</button>
+    </div>
+    <br>
+    <div>
+      Print status:
+      <div id="status"></div>
+    </div>
+</body>
+</html>
