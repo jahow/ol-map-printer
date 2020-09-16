@@ -10,7 +10,8 @@
   "author": "olivier.guyot@camptocamp.com",
   "license": "MIT",
   "dependencies": {
-    "ol": "^6.4.3"
+    "ol": "^6.4.3",
+    "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
