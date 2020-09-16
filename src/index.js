@@ -1,8 +1,7 @@
 window.addEventListener('load', () => {
     const specElt = document.getElementById('spec')
     const printBtn = document.getElementById('print')
-    const resultElt = document.getElementById('result')
-    const resultCtx = resultElt.getContext('2d')
+    const statusElt = document.getElementById('status')
 
     printBtn.disabled = true
 
@@ -26,10 +25,25 @@ window.addEventListener('load', () => {
             case 'notsupported':
                 console.log('OffscreenCanvas not supported :(')
                 break;
-            case 'render':
-                resultElt.width = msg.imageData.width;
-                resultElt.height = msg.imageData.height;
-                resultCtx.drawImage(msg.imageData, 0, 0)
+            case 'status':
+                const jobs = msg.status.jobs
+                statusElt.innerHTML = `
+Worker is operational. Jobs:<br>
+<ul>
+  ${jobs.map(job =>
+    `<li>status: ${job.status} - progress: ${job.progress * 100}% <canvas style="width: 100px"></canvas></li>`
+  ).join('')}
+  ${jobs.length === 0 ? 'No job found.' : ''}
+</ul>`
+                jobs
+                  .filter(job => !!job.imageData)
+                  .forEach((job, index) => {
+                    const canvas = statusElt.querySelectorAll('li > canvas')[index]
+                    const ctx = canvas.getContext('2d')
+                    canvas.width = job.imageData.width;
+                    canvas.height = job.imageData.height;
+                    ctx.drawImage(job.imageData, 0, 0)
+                })
                 break;
         }
     }
@@ -58,5 +72,9 @@ window.addEventListener('load', () => {
     navigator.serviceWorker.ready.then(() => {
         console.log('Service worker ready')
         printBtn.disabled = false
+
+        navigator.serviceWorker.controller.postMessage({
+            type: "report"
+        })
     })
 })
