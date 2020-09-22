@@ -26,7 +26,6 @@ Eventually a fallback will be done to print the maps on the main thread if doing
 ## Limitations
 
 * No fallback on main thread
-* Weird cropping on WMS layers
 * No support for other projections
 * No support for client-side styles (for WFS, GeoJSON, KML, Vector Tiles...)
 * No clean API for interacting with the worker
