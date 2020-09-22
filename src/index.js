@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
 Worker is operational. Jobs:<br>
 <ul>
   ${jobs.map(job =>
-    `<li>status: ${job.status} - progress: ${(job.progress * 100).toFixed(0)}% <canvas style="width: 100px"></canvas></li>`
+    `<li>status: ${job.status} - progress: ${(job.progress * 100).toFixed(0)}% <canvas style="width: 200px"></canvas></li>`
   ).join('')}
   ${jobs.length === 0 ? 'No job found.' : ''}
 </ul>`
